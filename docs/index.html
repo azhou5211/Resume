@@ -3,202 +3,74 @@ layout: default
 title: 'Andrew Zhou'
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-
-    <style>
-	
-	.node {
-		cursor: pointer;
+<style>
+	.profile-head {
+	    transform: translateY(5rem)
 	}
 
-	.node circle {
-	  fill: #fff;
-	  stroke: steelblue;
-	  stroke-width: 3px;
+	.cover {
+	    background-image: url("images/strip.jpg");
+	    background-size: cover;
+	    background-repeat: no-repeat
 	}
 
-	.node text {
-	  font: 12px sans-serif;
+	body {
+	    min-height: 100vh;
+	    overflow-x: hidden
 	}
 
-	.link {
-	  fill: none;
-	  stroke: #ccc;
-	  stroke-width: 2px;
+	.neo-button {
+	    width: 40px;
+	    height: 40px;
+	    outline: 0 !important;
+	    cursor: pointer;
+	    color: #fff;
+	    font-size: 25px;
+	    border: none;
+	    margin-right: 10px;
+	    border-radius: 50%;
+	    background: #404040;
 	}
-	
-    </style>
 
-  </head>
+	.neo-button:active {
+	    border-radius: 50%;
+	    background: #606060;
+	    box-shadow: 28px 28px 57px #606060, -28px -28px 57px #606060
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <body>
+<div class="row py-5 px-4">
+    <div class="col-md-5 mx-auto">
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                    <div class="profile mr-3"><img src="images/selfie.jpg" alt="..." width="130" class="rounded mb-2 img-thumbnail"></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0">Andrew Zhou</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>Ridgefield, WA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light p-4 d-flex">
+            	<div class="mt-5">
+	            	<h5 class="mb-0">About</h5>
+	                <div class="p-4 rounded shadow-sm">
+	                    <p>Fascinated in data science to produce accurate predictions.<br></p>
 
-<!-- load the d3.js library -->	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-	
-<script>
+						<p>I am a second year M.S. Data Science student at University of Washington - Data Science.<br></p>
 
-var treeData = [
-  {
-    "name": "Top Level",
-    "parent": "null",
-    "children": [
-      {
-        "name": "Level 2: A",
-        "parent": "Top Level",
-        "children": [
-          {
-            "name": "Son of A",
-            "parent": "Level 2: A"
-          },
-          {
-            "name": "Daughter of A",
-            "parent": "Level 2: A"
-          }
-        ]
-      },
-      {
-        "name": "Level 2: B",
-        "parent": "Top Level"
-      }
-    ]
-  }
-];
-
-
-// ************** Generate the tree diagram	 *****************
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
-	width = 960 - margin.right - margin.left,
-	height = 500 - margin.top - margin.bottom;
-	
-var i = 0,
-	duration = 750,
-	root;
-
-var tree = d3.layout.tree()
-	.size([height, width]);
-
-var diagonal = d3.svg.diagonal()
-	.projection(function(d) { return [d.y, d.x]; });
-
-var svg = d3.select("body").append("svg")
-	.attr("width", width + margin.right + margin.left)
-	.attr("height", height + margin.top + margin.bottom)
-  .append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-root = treeData[0];
-root.x0 = height / 2;
-root.y0 = 0;
-  
-update(root);
-
-d3.select(self.frameElement).style("height", "500px");
-
-function update(source) {
-
-  // Compute the new tree layout.
-  var nodes = tree.nodes(root).reverse(),
-	  links = tree.links(nodes);
-
-  // Normalize for fixed-depth.
-  nodes.forEach(function(d) { d.y = d.depth * 180; });
-
-  // Update the nodes…
-  var node = svg.selectAll("g.node")
-	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
-
-  // Enter any new nodes at the parent's previous position.
-  var nodeEnter = node.enter().append("g")
-	  .attr("class", "node")
-	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-	  .on("click", click);
-
-  nodeEnter.append("circle")
-	  .attr("r", 1e-6)
-	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-  nodeEnter.append("text")
-	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
-	  .attr("dy", ".35em")
-	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-	  .text(function(d) { return d.name; })
-	  .style("fill-opacity", 1e-6);
-
-  // Transition nodes to their new position.
-  var nodeUpdate = node.transition()
-	  .duration(duration)
-	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
-
-  nodeUpdate.select("circle")
-	  .attr("r", 10)
-	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-  nodeUpdate.select("text")
-	  .style("fill-opacity", 1);
-
-  // Transition exiting nodes to the parent's new position.
-  var nodeExit = node.exit().transition()
-	  .duration(duration)
-	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-	  .remove();
-
-  nodeExit.select("circle")
-	  .attr("r", 1e-6);
-
-  nodeExit.select("text")
-	  .style("fill-opacity", 1e-6);
-
-  // Update the links…
-  var link = svg.selectAll("path.link")
-	  .data(links, function(d) { return d.target.id; });
-
-  // Enter any new links at the parent's previous position.
-  link.enter().insert("path", "g")
-	  .attr("class", "link")
-	  .attr("d", function(d) {
-		var o = {x: source.x0, y: source.y0};
-		return diagonal({source: o, target: o});
-	  });
-
-  // Transition links to their new position.
-  link.transition()
-	  .duration(duration)
-	  .attr("d", diagonal);
-
-  // Transition exiting nodes to the parent's new position.
-  link.exit().transition()
-	  .duration(duration)
-	  .attr("d", function(d) {
-		var o = {x: source.x, y: source.y};
-		return diagonal({source: o, target: o});
-	  })
-	  .remove();
-
-  // Stash the old positions for transition.
-  nodes.forEach(function(d) {
-	d.x0 = d.x;
-	d.y0 = d.y;
-  });
-}
-
-// Toggle children on click.
-function click(d) {
-  if (d.children) {
-	d._children = d.children;
-	d.children = null;
-  } else {
-	d.children = d._children;
-	d._children = null;
-  }
-  update(d);
-}
-
-</script>
-	
-
-	<a href="test.html" class="button">Go to Test</a>
-  </body>
-</html>
+						<p>I graduated from Rutgers University – New Brunswick with dual major in Computer Science and Statistics. I have experience with data mining, data wrangling, and machine learning algorithms to make accurate predictions. Interested in pursuing a data scientist position or software engineering position.</p>
+	                </div>
+            	</div>
+            </div>
+            <div class="bg-light p-4 d-flex justify-content-center text-center">
+            	<div class="social-buttons"> <button class="neo-button" onclick="location.href='https://www.linkedin.com/in/andrew-j-zhou/';"><i class="fa fa-linkedin fa-1x"></i> <button class="neo-button" onclick="location.href='https://github.com/azhou5211';"><i class="fa fa-github fa-1x"></i> </div>
+            </div>
+        </div>
+    </div>
+</div>
