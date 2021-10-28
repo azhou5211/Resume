@@ -2,38 +2,100 @@
 layout: default
 title: 'Projects'
 ---
+<style>
+	.stretched-link::after {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    z-index: 1;
+	    pointer-events: auto;
+	    content: "";
+	    background-color: rgba(0,0,0,0);
+	}
 
-<h1> Not Yet Completed </h1>
+	.card-size {
+		/*width: 20rem;*/
+		height: 20rem;
+		display: inline-block;
+		margin-bottom: 15px;
+	}
 
-<div class="row py-5 px-4">
-    <div class="col-md-5 mx-auto">
-        <!-- Profile widget -->
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 cover">
-                <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src="images/selfie.jpg" alt="..." width="130" class="rounded mb-2 img-thumbnail"></div>
-                    <!-- <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">Andrew Zhou</h4>
-                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>Ridgefield, WA</p>
-                    </div> -->
-                </div>
-            </div>
-            <div class="bg-light p-4 d-flex">
-            	<div class="mt-4">
-            		<h1>Andrew Zhou</h1><h5>Data Scientist</h5><p>(646)460-2231<br>azhou5211@gmail.com</p><br>
-	            	<h5 class="mb-0">About</h5>
-	                <div class="p-4 rounded shadow-sm">
-	                    <p>Fascinated in data science to produce accurate predictions.<br></p>
+  	.center {
+	  margin: auto;
+	  width: 55%;
+	  padding: 10px;
+	}
 
-						<p>I am a second year M.S. Data Science student at University of Washington - Data Science.<br></p>
+</style>
+    	<div class="center">
+    		<p style="text-align:center">Click on a project card to redirect to the project URL!</p>
+	        <div class="card card-size">
+			  <div class="card-body">
+			    <h4 class="card-title">Evaluating the Robustness of Collaborative Filtering Recommender Systems against Attacks</h4>
+			    <p class="card-text">Our goal is to analyse the five shilling attack methods: Random Attack, Average Attack, Bandwagon Attack, Segmented Attack, Sampling Attack on different recommender systems. Recommender models chosen for evaluation are: User-based KNN model, Item-based KNN model, Latent Factor model, Neural Matrix Factorization model<br>
+			    	- Implemented functions for Random Attack, Sampling Attack, and Segmented attack<br>
+			    	- Implemented Neural Matrix Factorization model and trained on different attacked data sets<br>
+			    	- Discovered KNN and Latent Facor recommender systems are more vunerable; Neural Matrix Factorization is the most robust against attacks
+			    </p>
+			    <a href="https://github.com/azhou5211/Recommender_Systems_and_Attacks/blob/main/docs/Recommender%20Systems%20against%20Attacks.pdf" class="stretched-link"></a>
+			  </div>
+			</div>
+	        <div class="card card-size">
+			  <div class="card-body">
+			    <h4 class="card-title">Trainer AI</h4>
+			    <p class="card-text">
+			    	A project that can train people to learn correct postures for sports. This project uses computer vision to learn the correct postures from a professional sports player. A student can try to mimic the professional sports player's movement, and the program will give a score for how well they performed in comparison.<br>
+			    	- Built front-end flask app to upload trainer video and watch students live<br>
+			    	- Extracted human body positions using mediapipe<br>
+			    	- Implemented and refactored functions to recognize poses from trainers and students
+			    </p>
+			    <a href="https://github.com/azhou5211/posture_bois" class="stretched-link"></a>
+			  </div>
+			</div>
+			<div class="card card-size">
+			  <div class="card-body">
+			    <h4 class="card-title">Recipeat</h4>
+			    <p class="card-text">Recipe recommender for Meal Planning based on nutrition and available ingredients. <br>- Developed end-to-end Multi-Touch Attribution Model to attribute credit to marketing campaigns for a customer purchase<br>
+- Designed modules to query data, clean the data, model the data, and generate a visualization for the user <br>
+- Saved marketing spending on underperforming marketing campaigns while maintaining optimal customer purchase <br>
+- Designed and developed a trend anomaly diagnostics system which assisted in understanding how and why an anomaly occurred; enabling users to interpret and take action when facing a detected trend anomaly alert
 
-						<p>I graduated from Rutgers University – New Brunswick with dual major in Computer Science and Statistics. I have experience with data mining, data wrangling, and machine learning algorithms to make accurate predictions. Interested in pursuing a data scientist position or software engineering position.</p>
-	                </div>
-            	</div>
-            </div>
-            <div class="bg-light p-4 d-flex justify-content-center text-center">
-            	<div class="social-buttons"> <button class="neo-button" onclick="location.href='https://www.linkedin.com/in/andrew-j-zhou/';"><i class="fa fa-linkedin fa-1x"></i> <button class="neo-button" onclick="location.href='https://github.com/azhou5211';"><i class="fa fa-github fa-1x"></i> </div>
-            </div>
-        </div>
-    </div>
-</div>
+			  	</p>
+
+			    <a href="https://github.com/azhou5211/recipeat" class="stretched-link"></a>
+			  </div>
+			</div>
+			<div class="card card-size">
+			  <div class="card-body">
+			    <h4 class="card-title">COVID-19 and Government Policies</h4>
+			    <p class="card-text">
+			    	Find which government policies were the most effective at slowing down COVID-19 cases<br>
+- Searched and scraped data online regarding COVID-19 cases and government policies implemented in the United States<br>
+- Cleaned the data into a usable format for machine learning algorithms by using Pandas package from Python<br>
+- Analyzed government policies from generated auto-regression time series and SAS JMP graphic visualizations and removed nonimpactful
+government policies from the regression<br>
+- Discovered the most impactful government policies were mask mandates and gathering restrictions of any size
+			  	</p>
+
+			    <a href="https://github.com/azhou5211/Covid19-Hackathon" class="stretched-link"></a>
+			  </div>
+			</div>
+			<div class="card card-size">
+			  <div class="card-body">
+			    <h4 class="card-title">Android Chess App</h4>
+			    <p class="card-text">
+			    	Created an Android App to play chess with another human player or a bot<br>
+- Designed graphical user interface using Android Studio<br>
+- Developed code to play Chess through console output<br>
+- Integrated the Android graphical user interface to be compatible with Chess code<br>
+- Enhanced App by adding extra functionality such as playing against AI, saving games, and recording previously played games
+
+			  	</p>
+
+			    <a href="https://github.com/azhou5211/AndroidChess" class="stretched-link"></a>
+			  </div>
+			</div>
+
+			
