@@ -1,5 +1,7 @@
 # Resume
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This is a github pages repository. It currently hosts [andrewjameszhou.com](https://andrewjameszhou.com).
 
 The webpage currently contains "About Me" and "Resume" section. The Projects section is not yet completed.  
